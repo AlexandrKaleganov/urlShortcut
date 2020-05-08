@@ -1,0 +1,32 @@
+<div class="modal-header">
+  <h4 class="modal-title">Вход пользователя</h4>
+  <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+          (click)="clear()">&times;
+  </button>
+</div>
+<form name="loginForm" role="form" novalidate (ngSubmit)="login()" [formGroup]="loginForm">
+  <div class="modal-body">
+    <div class="form-group">
+      <label class="form-control-label" for="login">Логин</label>
+      <input type="text" class="form-control shadow-sm bg-white rounded" name="login" id="login"
+             formControlName="login" autocomplete="off"/>
+    </div>
+    <div class="form-group">
+      <label class="form-control-label" for="password">Логин</label>
+      <input type="text" class="form-control shadow-sm bg-white rounded" name="password" id="password"
+             formControlName="password" autocomplete="off"/>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <div class="btn-group float-right shadow rounded">
+      <button type="button" style="border-right-color: white"
+              class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
+        <span >Назад</span>
+      </button>
+      <button id="jhi-confirm-update-transportation" type="button" style="border-left-color: white" [disabled]="loginForm.invalid"
+              class="btn btn-primary">
+        <span >Вход</span>
+      </button>
+    </div>
+  </div>
+</form>

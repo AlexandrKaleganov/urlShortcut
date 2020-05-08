@@ -4,6 +4,8 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
+import {AdminModule} from './admin/admin.module';
+import { HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -11,8 +13,9 @@ import { HeaderComponent } from './header/header.component';
     HeaderComponent
   ],
   imports: [
+    HttpClientModule,
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule, AdminModule
   ],
   providers: [],
   bootstrap: [AppComponent]
