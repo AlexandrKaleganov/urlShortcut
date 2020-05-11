@@ -1,4 +1,4 @@
-import { Authority } from './authority.model';
+import { Authority } from './users.model';
 
 describe('Authority', () => {
   it('should create an instance', () => {
