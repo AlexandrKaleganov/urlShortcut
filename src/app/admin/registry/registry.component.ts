@@ -34,6 +34,10 @@ export class RegistryComponent implements OnInit {
     });
   }
 
+  closeError() {
+    this.users.errorMessage = null;
+  }
+
   clear() {
     this.activeModal.dismiss();
   }

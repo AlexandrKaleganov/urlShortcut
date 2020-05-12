@@ -9,6 +9,7 @@ export class Users {
     public middleName?: string,
     public pwd?: string,
     public url?: string,
+    public errorMessage?: string,
     public roles?: Roles[]
   ) {
   }

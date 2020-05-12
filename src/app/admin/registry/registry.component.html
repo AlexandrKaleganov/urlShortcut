@@ -9,7 +9,7 @@
     <div class="form-group">
       <label class="form-control-label" for="url">Введте URL  для регистрации в системе</label>
       <input type="url" class="form-control shadow-sm bg-white rounded" name="url" id="url"
-             formControlName="url" autocomplete="off"/>
+             formControlName="url" autocomplete="off" placeholder="пример формата ввода: akalegenov.ru"/>
     </div>
   </div>
   <div class="modal-footer">
@@ -26,5 +26,6 @@
     </div>
   </div>
 </form>
+<app-error *ngIf="users && users.errorMessage" [errorMessage]="users.errorMessage" (closeAlert)="closeError()"></app-error>
 <app-show-registred-user *ngIf="isShowVisible" [newUser]="users"></app-show-registred-user>
 

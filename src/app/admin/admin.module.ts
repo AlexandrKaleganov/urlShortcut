@@ -7,10 +7,11 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { RegistryComponent } from './registry/registry.component';
 import { ShowRegistredUserComponent } from './show-registred-user/show-registred-user.component';
+import { ErrorComponent } from './error/error.component';
 
 
 @NgModule({
-  declarations: [LoginComponent, RegistryComponent, ShowRegistredUserComponent],
+  declarations: [LoginComponent, RegistryComponent, ShowRegistredUserComponent, ErrorComponent],
   entryComponents: [LoginComponent, RegistryComponent],
   imports: [
     NgbModule,
