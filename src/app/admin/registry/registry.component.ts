@@ -21,6 +21,7 @@ export class RegistryComponent implements OnInit {
   }
 
   registry() {
+    console.log(this.regForm.get('url').value);
     this.authService.registry(this.regForm.get('url').value).subscribe(res => {
       console.log(res.body);
     });

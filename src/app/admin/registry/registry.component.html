@@ -4,7 +4,7 @@
           (click)="clear()">&times;
   </button>
 </div>
-<form name="regForm" role="form" novalidate (ngSubmit)="registry()" [formGroup]="regForm">
+<form name="regForm" role="form" novalidate [formGroup]="regForm">
   <div class="modal-body">
     <div class="form-group">
       <label class="form-control-label" for="url">Введте URL  для регистрации в системе</label>
@@ -18,7 +18,7 @@
               class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
         <span >Назад</span>
       </button>
-      <button id="jhi-confirm-update-transportation" type="button" style="border-left-color: white" [disabled]="regForm.invalid"
+      <button id="jhi-confirm-update-transportation" type="button" (click)="registry()" style="border-left-color: white" [disabled]="regForm.invalid"
               class="btn btn-primary">
         <span >Регистрация</span>
       </button>
