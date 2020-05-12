@@ -18,10 +18,13 @@
               class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
         <span >Назад</span>
       </button>
-      <button id="jhi-confirm-update-transportation" type="button" (click)="registry()" style="border-left-color: white" [disabled]="regForm.invalid"
+      <button id="jhi-confirm-update-transportation" type="button" (click)="registry()" style="border-left-color: white"
+              [disabled]="regForm.invalid || isShowVisible"
               class="btn btn-primary">
         <span >Регистрация</span>
       </button>
     </div>
   </div>
 </form>
+<app-show-registred-user *ngIf="isShowVisible" [newUser]="users"></app-show-registred-user>
+
