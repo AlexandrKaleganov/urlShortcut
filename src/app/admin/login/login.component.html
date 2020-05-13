@@ -30,4 +30,4 @@
     </div>
   </div>
 </form>
-<app-error [errorMessage]=""></app-error>
+<app-error *ngIf="errorMessage" [errorMessage]="errorMessage" (closeAlert)="closeError()"></app-error>
