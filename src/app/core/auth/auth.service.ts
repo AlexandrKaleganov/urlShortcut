@@ -12,7 +12,7 @@ export class AuthService {
   url: string = GLOBAL_URL + '/api/auth';
   authToken: string = null;
   currentUser: string = null;
-
+  principal: AuthToken = null;
   constructor(private http: HttpClient) {
   }
 
@@ -25,6 +25,6 @@ export class AuthService {
   }
 
   isAuth() {
-    return this.authToken != null;
+    return this.principal != null;
   }
 }

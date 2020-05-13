@@ -4,7 +4,7 @@
           (click)="clear()">&times;
   </button>
 </div>
-<form name="loginForm" role="form" novalidate (ngSubmit)="login()" [formGroup]="loginForm">
+<form name="loginForm" role="form" novalidate [formGroup]="loginForm">
   <div class="modal-body">
     <div class="form-group">
       <label class="form-control-label" for="login">Логин</label>
@@ -23,10 +23,11 @@
               class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
         <span >Назад</span>
       </button>
-      <button id="jhi-confirm-update-transportation" type="button" style="border-left-color: white" [disabled]="loginForm.invalid"
+      <button id="jhi-confirm-update-transportation" type="button" (click)="login()" style="border-left-color: white" [disabled]="loginForm.invalid"
               class="btn btn-primary">
         <span >Вход</span>
       </button>
     </div>
   </div>
 </form>
+<app-error [errorMessage]=""></app-error>
