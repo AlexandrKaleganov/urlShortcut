@@ -13,11 +13,12 @@ export class AuthService {
   authToken: string = null;
   currentUser: string = null;
   principal: AuthToken = null;
+
   constructor(private http: HttpClient) {
   }
 
   signIn(user: Users): Observable<HttpResponse<AuthToken>> {
-    return this.http.post<AuthToken>(this.url , user, {observe: 'response'});
+    return this.http.post<AuthToken>(this.url, user, {observe: 'response'});
   }
 
   registry(url: string): Observable<HttpResponse<Users>> {
@@ -26,5 +27,10 @@ export class AuthService {
 
   isAuth() {
     return this.principal != null;
+  }
+
+  hasAnyAuthority(authority: string[] | string): boolean {
+    console.log('данный метод не реализован');
+    return true;
   }
 }

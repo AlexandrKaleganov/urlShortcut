@@ -3,6 +3,7 @@ import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {LoginComponent} from '../admin/login/login.component';
 import {AuthService} from '../core/auth/auth.service';
 import {RegistryComponent} from '../admin/registry/registry.component';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -10,8 +11,10 @@ import {RegistryComponent} from '../admin/registry/registry.component';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-  constructor(public modalService: NgbModal, public authService: AuthService
+  route: Router;
+  constructor(public modalService: NgbModal, public authService: AuthService, route: Router
   ) {
+    this.route = route;
   }
 
   ngOnInit() {
@@ -27,5 +30,6 @@ export class HeaderComponent implements OnInit {
 
   logout(): void {
     this.authService.principal = null;
+    this.route.navigate(['']);
   }
 }

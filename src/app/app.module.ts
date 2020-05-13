@@ -6,13 +6,17 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import {AdminModule} from './admin/admin.module';
 import { HttpClientModule} from '@angular/common/http';
+import { AuthorityDirective } from './shared/directive/authority.directive';
+import {EntitiesModule} from './entities/entities.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent
+    HeaderComponent,
+    AuthorityDirective,
   ],
   imports: [
+    EntitiesModule,
     HttpClientModule,
     BrowserModule,
     AppRoutingModule, AdminModule
