@@ -13,7 +13,7 @@ export class LoginComponent implements OnInit {
   errorMessage?: string;
 
   constructor(public activeModal: NgbActiveModal, protected fb: FormBuilder,
-              public authService: AuthService) {
+              protected authService: AuthService) {
   }
 
   loginForm = this.fb.group({

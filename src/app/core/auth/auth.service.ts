@@ -28,9 +28,17 @@ export class AuthService {
   isAuth() {
     return this.principal != null;
   }
-
-  hasAnyAuthority(authority: string[] | string): boolean {
+getPrincipal(): AuthToken {
+    return this.principal;
+}
+  hasAnyAuthority(authorityes: string[] | string): boolean {
     console.log('данный метод не реализован');
-    return true;
+    if (!this.isAuth()) {
+      return false;
+    }
+    if (!Array.isArray(authorityes)) {
+      authorityes = [authorityes];
+    }
+    return this.principal.roles.some((authority: string) => authorityes.includes(authority));
   }
 }

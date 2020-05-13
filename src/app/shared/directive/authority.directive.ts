@@ -23,7 +23,7 @@ export class AuthorityDirective {
 
   constructor(private templateRef: TemplateRef<any>,
               private viewContainerRef: ViewContainerRef,
-              public authService: AuthService) {
+              protected authService: AuthService) {
   }
 
   private updateView(): void {

@@ -13,7 +13,7 @@ export class RegistryComponent implements OnInit {
   isShowVisible = false;
   users?: Users;
 
-  constructor(public activeModal: NgbActiveModal, protected fb: FormBuilder, public authService: AuthService) {
+  constructor(public activeModal: NgbActiveModal, protected fb: FormBuilder,  protected authService: AuthService) {
   }
 
   regForm = this.fb.group({
