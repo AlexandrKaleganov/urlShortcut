@@ -2,7 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import {Users} from '../../shared/models/users.model';
 import {UsersService} from './users.service';
 import {HttpParams} from '@angular/common/http';
-import {ITEMS_PER_PAGE} from '../../shared/constant/page.constant';
 
 @Component({
   selector: 'app-users',
@@ -12,27 +11,31 @@ import {ITEMS_PER_PAGE} from '../../shared/constant/page.constant';
 export class UsersComponent implements OnInit {
   userList: Users[];
   usersService: UsersService;
-  page = 0;
-  itemsPerPage = ITEMS_PER_PAGE;
+  totalItems: number;
+  itemsPerPage = 10;
+  page = 1;
 
   constructor(usersService: UsersService) {
     this.usersService = usersService;
   }
 
   ngOnInit() {
-    this.loadAll();
+    this.loadPage();
   }
 
-  loadAll(page?: number) {
+  loadPage(page?: number) {
     const pageToLoad: number = page ? page : this.page;
+    console.log(pageToLoad);
     let options: HttpParams = new HttpParams();
     if (pageToLoad !== undefined) {
-      options = options.set('pageable', (pageToLoad - 1).toString());
+      options = options.set('page', (pageToLoad - 1).toString());
     }
     options = options.set('size', this.itemsPerPage.toString());
+    options = options.set('sort', 'id');
     this.usersService.findAll(options).subscribe(res => {
       this.userList = res.body;
-      console.log(this.userList);
+      this.totalItems = Number(res.headers.get('totalSize'));
+      console.warn(this.totalItems);
     });
   }
 
@@ -42,5 +45,13 @@ export class UsersComponent implements OnInit {
 
   edit(user: Users) {
     console.log(user);
+  }
+
+  showFilter() {
+    console.log('не реализовано');
+  }
+
+  deleteFilters() {
+    console.log('не реализовано');
   }
 }

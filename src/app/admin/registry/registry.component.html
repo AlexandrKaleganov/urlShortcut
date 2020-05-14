@@ -27,5 +27,5 @@
   </div>
 </form>
 <app-error *ngIf="users && users.errorMessage" [errorMessage]="users.errorMessage" (closeAlert)="closeError()"></app-error>
-<app-show-registred-user *ngIf="isShowVisible" [newUser]="users"></app-show-registred-user>
+<app-show-registred-user *ngIf="isShowVisible" [newUser]="users" (eventEmitter)="login($event)"></app-show-registred-user>
 

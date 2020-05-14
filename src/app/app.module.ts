@@ -10,18 +10,20 @@ import { AuthorityDirective } from './shared/directive/authority.directive';
 import {EntitiesModule} from './entities/entities.module';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    HeaderComponent,
-    AuthorityDirective,
+    declarations: [
+        AppComponent,
+        HeaderComponent,
+        AuthorityDirective,
+    ],
+    imports: [
+        EntitiesModule,
+        HttpClientModule,
+        BrowserModule,
+        AppRoutingModule, AdminModule
+    ],
+    providers: [],
+  exports: [
   ],
-  imports: [
-    EntitiesModule,
-    HttpClientModule,
-    BrowserModule,
-    AppRoutingModule, AdminModule
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+    bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -28,9 +28,15 @@ export class AuthService {
   isAuth() {
     return this.principal != null;
   }
-getPrincipal(): AuthToken {
+
+  getPrincipal(): AuthToken {
     return this.principal;
-}
+  }
+
+  setPrincipal(auth: AuthToken) {
+    this.principal = auth;
+  }
+
   hasAnyAuthority(authorityes: string[] | string): boolean {
     console.log('данный метод не реализован');
     if (!this.isAuth()) {

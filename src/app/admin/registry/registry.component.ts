@@ -13,7 +13,7 @@ export class RegistryComponent implements OnInit {
   isShowVisible = false;
   users?: Users;
 
-  constructor(public activeModal: NgbActiveModal, protected fb: FormBuilder,  protected authService: AuthService) {
+  constructor(public activeModal: NgbActiveModal, protected fb: FormBuilder, protected authService: AuthService) {
   }
 
   regForm = this.fb.group({
@@ -40,5 +40,16 @@ export class RegistryComponent implements OnInit {
 
   clear() {
     this.activeModal.dismiss();
+  }
+
+  login($event) {
+    this.authService.signIn($event).subscribe(res => {
+      this.authService.setPrincipal(res.body);
+      this.activeModal.dismiss();
+    }, error => {
+      if (this.users) {
+        this.users.errorMessage = 'Не удалось пройти авторизацию';
+      }
+    });
   }
 }
