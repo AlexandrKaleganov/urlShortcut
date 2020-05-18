@@ -22,8 +22,9 @@ import {EntitiesModule} from './entities/entities.module';
         AppRoutingModule, AdminModule
     ],
     providers: [],
-  exports: [
-  ],
+    exports: [
+        AuthorityDirective
+    ],
     bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -4,6 +4,7 @@ import {GLOBAL_URL} from '../../shared/constant/url.constant';
 import {Users} from '../../shared/models/users.model';
 import {Observable} from 'rxjs';
 import {AuthToken} from '../../shared/models/auth-token.model';
+import {Roles} from '../../shared/models/roles.model';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,7 @@ export class AuthService {
   url: string = GLOBAL_URL + '/api/auth';
   authToken: string = null;
   currentUser: string = null;
-  principal: AuthToken = null;
+  private principal: AuthToken = null;
 
   constructor(private http: HttpClient) {
   }
@@ -25,16 +26,54 @@ export class AuthService {
     return this.http.post<Users>(this.url + '/registry', url, {observe: 'response'});
   }
 
-  isAuth() {
-    return this.principal != null;
+  getAuthority(): Observable<HttpResponse<Roles[]>> {
+    return this.http.get<Roles[]>(this.url + '/roles/', {
+      headers: {Authorization: `Bearer ${this.getPrincipal()}`},
+      observe: 'response'
+    });
   }
 
-  getPrincipal(): AuthToken {
-    return this.principal;
+  isAuth() {
+    return sessionStorage.getItem('successToken') != null;
+  }
+
+  /**
+   * получить текущий токен
+   */
+  getPrincipal(): string {
+    return sessionStorage.getItem('successToken');
   }
 
   setPrincipal(auth: AuthToken) {
     this.principal = auth;
+    sessionStorage.setItem('successToken', auth.jwtToken);
+  }
+
+  /**
+   * очиска сессии
+   */
+  clearJWTToken() {
+    this.principal = null;
+    sessionStorage.clear();
+  }
+
+  isHasAnyAuthority(current: Roles[], authorityes: string[] | string): boolean {
+    console.log(current);
+    let res = false;
+    if (!this.isAuth()) {
+      return false;
+    }
+    if (!Array.isArray(authorityes)) {
+      authorityes = [authorityes];
+    }
+    current.forEach(auth => {
+      if (authorityes.includes(auth.name)
+      ) {
+        res = true;
+      }
+    });
+    console.log('вернуть = ' + res);
+    return res;
   }
 
   hasAnyAuthority(authorityes: string[] | string): boolean {
@@ -45,6 +84,12 @@ export class AuthService {
     if (!Array.isArray(authorityes)) {
       authorityes = [authorityes];
     }
-    return this.principal.roles.some((authority: string) => authorityes.includes(authority));
+    this.getAuthority().subscribe(res => {
+      console.log(res);
+    });
+    if (this.principal != null) {
+      return this.principal.roles.some((authority: string) => authorityes.includes(authority));
+    }
+    return true; // todo: переделать то заглушка
   }
 }

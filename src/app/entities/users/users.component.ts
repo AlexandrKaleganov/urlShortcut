@@ -2,6 +2,10 @@ import {Component, OnInit} from '@angular/core';
 import {Users} from '../../shared/models/users.model';
 import {UsersService} from './users.service';
 import {HttpParams} from '@angular/common/http';
+import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import {CreateUserComponent} from './create-user/create-user.component';
+import {AuthService} from '../../core/auth/auth.service';
+import {Roles} from '../../shared/models/roles.model';
 
 @Component({
   selector: 'app-users',
@@ -14,9 +18,14 @@ export class UsersComponent implements OnInit {
   totalItems: number;
   itemsPerPage = 10;
   page = 1;
+  currentRoles: Roles[];
 
-  constructor(usersService: UsersService) {
+  constructor(usersService: UsersService, public modalService: NgbModal, public authService: AuthService) {
     this.usersService = usersService;
+    this.authService.getAuthority().subscribe(res => {
+      console.log(res.body);
+      this.currentRoles = res.body;
+    });
   }
 
   ngOnInit() {
@@ -39,6 +48,10 @@ export class UsersComponent implements OnInit {
     });
   }
 
+  addNewUser() {
+    const modelRef = this.modalService.open(CreateUserComponent, {size: 'md', backdrop: 'static'});
+  }
+
   delete(user: Users): void {
     console.log(user);
   }
@@ -53,5 +66,13 @@ export class UsersComponent implements OnInit {
 
   deleteFilters() {
     console.log('не реализовано');
+  }
+
+  isVisible(roles: any) {
+    if (this.currentRoles) {
+      return this.authService.isHasAnyAuthority(this.currentRoles, roles);
+    } else {
+      return false;
+    }
   }
 }

@@ -6,14 +6,23 @@
           <div class="float-left" style="padding-right: 10px">
             <h3><span>Users</span></h3>
           </div>
-          <form class="form-inline">
-            <button class="btn float-right btn-primary shadow rounded" (click)="showFilter()">
-              Show filters
+          <div class="btn-group float-left rounded">
+            <form class="form-inline">
+              <button class="btn float-right btn-primary shadow rounded" (click)="showFilter()">
+                Show filters
+              </button>
+              <button class="btn float-right btn-danger shadow" (click)="deleteFilters()">
+                Delete filters
+              </button>
+            </form>
+          </div>
+          <div  *ngIf="isVisible('ADMIN')" class="btn-group float-right rounded">
+            <button
+              class="btn btn-primary float-right jh-create-entity create-ticket"
+              (click)="addNewUser()">
+              <span>Добавить пользователя</span>
             </button>
-            <button class="btn float-right btn-danger shadow" (click)="deleteFilters()">
-              Delete filters
-            </button>
-          </form>
+          </div>
         </div>
         <div class="card-body" style="padding: 0;">
           <table class="table table-sm table-striped">

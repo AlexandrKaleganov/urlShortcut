@@ -12,7 +12,7 @@ import {Router} from '@angular/router';
 })
 export class HeaderComponent implements OnInit {
   route: Router;
-  constructor(public modalService: NgbModal,  protected authService: AuthService, route: Router
+  constructor(public modalService: NgbModal, public authService: AuthService, route: Router
   ) {
     this.route = route;
   }
@@ -29,7 +29,7 @@ export class HeaderComponent implements OnInit {
   }
 
   logout(): void {
-    this.authService.principal = null;
+    this.authService.clearJWTToken();
     this.route.navigate(['']);
   }
 }

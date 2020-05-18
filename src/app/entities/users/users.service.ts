@@ -18,7 +18,7 @@ export class UsersService {
     console.log(this.authService.getPrincipal());
     return this.http.get<Users[]>(this.url, {
       params: options,
-      headers: {Authorization: `Bearer ${this.authService.getPrincipal().jwtToken}`},
+      headers: {Authorization: `Bearer ${this.authService.getPrincipal()}`},
       observe: 'response'
     });
   }

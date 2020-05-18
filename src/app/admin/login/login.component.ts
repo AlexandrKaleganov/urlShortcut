@@ -26,8 +26,8 @@ export class LoginComponent implements OnInit {
 
   login() {
     this.authService.signIn(this.createUser()).subscribe(res => {
-      this.authService.principal = res.body;
-      console.log(this.authService.principal);
+      this.authService.setPrincipal(res.body);
+      console.log(this.authService.getPrincipal());
       this.activeModal.dismiss();
     }, error => {
       this.errorMessage = 'Не верный логин или пароль';
@@ -37,9 +37,11 @@ export class LoginComponent implements OnInit {
   createUser(): Users {
     return new Users(null, this.loginForm.get('login').value, this.loginForm.get('password').value);
   }
-closeError() {
+
+  closeError() {
     this.errorMessage = null;
-}
+  }
+
   clear() {
     this.activeModal.dismiss();
   }
