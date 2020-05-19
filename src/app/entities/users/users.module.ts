@@ -8,6 +8,8 @@ import {RolesNamePipe} from '../../shared/pipe/roles-name.pipe';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {CreateUserComponent} from './create-user/create-user.component';
 import {AuthorityDirective} from '../../shared/directive/authority.directive';
+import {ReactiveFormsModule} from '@angular/forms';
+import {AdminModule} from '../../admin/admin.module';
 
 
 @NgModule({
@@ -20,6 +22,8 @@ import {AuthorityDirective} from '../../shared/directive/authority.directive';
     CommonModule,
     UsersRoutingModule,
     NgbModule,
+    ReactiveFormsModule,
+    AdminModule,
   ],
   exports: [AuthorityDirective
   ]

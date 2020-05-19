@@ -22,4 +22,21 @@ export class UsersService {
       observe: 'response'
     });
   }
+
+  save(options: Users): Observable<HttpResponse<Users>> {
+    console.log(this.authService.getPrincipal());
+    return this.http.post<Users>(this.url, options,
+      {
+        headers: {Authorization: `Bearer ${this.authService.getPrincipal()}`},
+        observe: 'response'
+      });
+  }
+  update(options: Users): Observable<HttpResponse<Users>> {
+    console.log(this.authService.getPrincipal());
+    return this.http.put<Users>(this.url, options,
+      {
+        headers: {Authorization: `Bearer ${this.authService.getPrincipal()}`},
+        observe: 'response'
+      });
+  }
 }

@@ -7,14 +7,12 @@
             <h3><span>Users</span></h3>
           </div>
           <div class="btn-group float-left rounded">
-            <form class="form-inline">
               <button class="btn float-right btn-primary shadow rounded" (click)="showFilter()">
                 Show filters
               </button>
               <button class="btn float-right btn-danger shadow" (click)="deleteFilters()">
                 Delete filters
               </button>
-            </form>
           </div>
           <div *ngIf="hashAuthorityService.isVisible('ADMIN')" class="btn-group float-right rounded">
             <button

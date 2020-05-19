@@ -4,10 +4,35 @@
           (click)="clear()">&times;
   </button>
 </div>
-<form name="regForm" role="form" novalidate [formGroup]="regForm">
+<form name="regForm" role="form" novalidate [formGroup]="editForm">
   <div class="modal-body">
     <div class="form-group">
-      <label class="form-control-label" for="url">Введте URL  для регистрации в системе</label>
+      <label class="form-control-label" for="login">Логин</label>
+      <input type="text" class="form-control shadow-sm bg-white rounded" name="login" id="login"
+             formControlName="login" autocomplete="off" placeholder="введите логин"/>
+    </div>
+    <div class="form-group">
+      <label class="form-control-label" for="pwd">Пароль</label>
+      <input type="text" class="form-control shadow-sm bg-white rounded" name="pwd" id="pwd"
+             formControlName="pwd" autocomplete="off" placeholder="введите пароль"/>
+    </div>
+    <div class="form-group">
+      <label class="form-control-label" for="lastName">Фамилия</label>
+      <input type="text" class="form-control shadow-sm bg-white rounded" name="lastName" id="lastName"
+             formControlName="lastName" autocomplete="off"/>
+    </div>
+    <div class="form-group">
+      <label class="form-control-label" for="firstName">Имя</label>
+      <input type="text" class="form-control shadow-sm bg-white rounded" name="firstName" id="firstName"
+             formControlName="firstName" autocomplete="off"/>
+    </div>
+    <div class="form-group">
+      <label class="form-control-label" for="middleName">Отчество</label>
+      <input type="url" class="form-control shadow-sm bg-white rounded" name="middleName" id="middleName"
+             formControlName="middleName" autocomplete="off"/>
+    </div>
+    <div class="form-group">
+      <label class="form-control-label" for="url">Введте URL для регистрации в системе</label>
       <input type="url" class="form-control shadow-sm bg-white rounded" name="url" id="url"
              formControlName="url" autocomplete="off" placeholder="пример формата ввода: akalegenov.ru"/>
     </div>
@@ -16,15 +41,15 @@
     <div class="btn-group float-right shadow rounded">
       <button type="button" style="border-right-color: white"
               class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
-        <span >Назад</span>
+        <span>Назад</span>
       </button>
-      <button id="jhi-confirm-update-transportation" type="button" (click)="registry()" style="border-left-color: white"
-              [disabled]="regForm.invalid || isShowVisible"
+      <button id="jhi-confirm-update-transportation" type="button" (click)="save()" style="border-left-color: white"
+              [disabled]="editForm.invalid"
               class="btn btn-primary">
-        <span >Регистрация</span>
+        <span>Регистрация</span>
       </button>
     </div>
   </div>
 </form>
-<app-error *ngIf="users && users.errorMessage" [errorMessage]="users.errorMessage" (closeAlert)="closeError()"></app-error>
-<app-show-registred-user *ngIf="isShowVisible" [newUser]="users" (eventEmitter)="login($event)"></app-show-registred-user>
+<app-error *ngIf="users && users.errorMessage" [errorMessage]="users.errorMessage"
+           (closeAlert)="closeError()"></app-error>

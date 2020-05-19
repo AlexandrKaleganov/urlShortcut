@@ -11,15 +11,18 @@ import { ErrorComponent } from './error/error.component';
 
 
 @NgModule({
-  declarations: [LoginComponent, RegistryComponent, ShowRegistredUserComponent, ErrorComponent],
-  entryComponents: [LoginComponent, RegistryComponent],
-  imports: [
-    NgbModule,
-    CommonModule,
-    AdminRoutingModule,
-    ReactiveFormsModule,
-    FormsModule, ReactiveFormsModule
-  ]
+    declarations: [LoginComponent, RegistryComponent, ShowRegistredUserComponent, ErrorComponent],
+    entryComponents: [LoginComponent, RegistryComponent],
+    exports: [
+        ErrorComponent
+    ],
+    imports: [
+        NgbModule,
+        CommonModule,
+        AdminRoutingModule,
+        ReactiveFormsModule,
+        FormsModule, ReactiveFormsModule
+    ]
 })
 export class AdminModule {
 }
