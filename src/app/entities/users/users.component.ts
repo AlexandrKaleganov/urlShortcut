@@ -44,7 +44,7 @@ export class UsersComponent implements OnInit {
   }
 
   addNewUser() {
-    const modelRef = this.modalService.open(CreateUserComponent, {size: 'md', backdrop: 'static'});
+    const modelRef = this.modalService.open(CreateUserComponent, {size: 'lg', backdrop: 'static'});
   }
 
   delete(user: Users): void {

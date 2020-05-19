@@ -60,8 +60,6 @@ export class AuthService implements OnDestroy {
   clearJWTToken() {
     this.principal = null;
     sessionStorage.clear();
-    console.log('successToken');
-    console.log(sessionStorage.getItem('successToken'));
   }
 
   isHasAnyAuthority(current: Roles[], authorityes: string[] | string): boolean {

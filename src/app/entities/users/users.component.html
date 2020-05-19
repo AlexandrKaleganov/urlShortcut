@@ -7,12 +7,12 @@
             <h3><span>Users</span></h3>
           </div>
           <div class="btn-group float-left rounded">
-              <button class="btn float-right btn-primary shadow rounded" (click)="showFilter()">
-                Show filters
-              </button>
-              <button class="btn float-right btn-danger shadow" (click)="deleteFilters()">
-                Delete filters
-              </button>
+            <button class="btn float-right btn-primary shadow rounded" (click)="showFilter()">
+              Show filters
+            </button>
+            <button class="btn float-right btn-danger shadow" (click)="deleteFilters()">
+              Delete filters
+            </button>
           </div>
           <div *appAuthority="['ADMIN']" class="btn-group float-right rounded">
             <button
@@ -23,29 +23,29 @@
           </div>
         </div>
         <div class="card-body" style="padding: 0;">
-          <table class="table table-sm table-striped">
-            <thead>
+          <table class="table table-hover">
+            <thead class="thead-dark">
             <tr>
-              <th class="border border-top-0 align-middle text-center">ID</th>
-              <th class="border border-top-0 align-middle text-center">Логин</th>
-              <th class="border border-top-0 align-middle text-center">LastName</th>
-              <th class="border border-top-0 align-middle text-center">FirstName</th>
-              <th class="border border-top-0 align-middle text-center">MiddleName</th>
-              <th class="border border-top-0 align-middle text-center">URL</th>
-              <th class="border border-top-0 align-middle text-center">ROLES</th>
+              <th scope="col">ID</th>
+              <th scope="col">Логин</th>
+              <th scope="col">LastName</th>
+              <th scope="col">FirstName</th>
+              <th scope="col">MiddleName</th>
+              <th scope="col">URL</th>
+              <th scope="col">ROLES</th>
             </tr>
             </thead>
             <tbody>
             <tr *ngFor="let users of userList">
-              <td class="align-middle border text-center">{{users.id}}</td>
-              <td class="align-middle border text-center">{{users.login}}</td>
-              <td class="align-middle border text-center">
+              <th scope="row">{{users.id}}</th>
+              <td>{{users.login}}</td>
+              <td>
                 {{users.lastName}}
               </td>
-              <td class="align-middle border text-center">{{users.firstName}}</td>
-              <td class="align-middle border text-center">{{users.middleName}}</td>
-              <td class="align-middle border text-center">{{users.url}}</td>
-              <td class="align-middle border text-center">
+              <td>{{users.firstName}}</td>
+              <td>{{users.middleName}}</td>
+              <td>{{users.url}}</td>
+              <td>
                 <div *ngFor="let role of users.roles">
                   <span class="shadow {{role.name|roles}}"> {{role.name|rolesName}}</span>
                 </div>
@@ -53,16 +53,17 @@
             </tr>
             </tbody>
           </table>
+          <div class="row justify-content-center">
+            <span>{{(page - 1) * itemsPerPage + 1 + ' - ' + itemsPerPage * page}}</span>
+          </div>
+          <div class="row justify-content-center">
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [pageSize]="itemsPerPage" [maxSize]="5"
+                            [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage(page)"></ngb-pagination>
+          </div>
         </div>
         <div>
         </div>
-        <div class="row justify-content-center">
-          <span>{{(page - 1) * itemsPerPage + 1 + ' - ' + itemsPerPage * page}}</span>
-        </div>
-        <div class="row justify-content-center">
-          <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [pageSize]="itemsPerPage" [maxSize]="5"
-                          [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage(page)"></ngb-pagination>
-        </div>
+
       </div>
     </div>
   </div>
