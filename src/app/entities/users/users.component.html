@@ -22,7 +22,7 @@
             </button>
           </div>
         </div>
-        <div class="card-body" style="padding: 0;">
+        <div class="card-body shadow" style="padding: 0" >
           <table class="table table-hover">
             <thead class="thead-dark">
             <tr>
@@ -37,15 +37,15 @@
             </thead>
             <tbody>
             <tr *ngFor="let users of userList">
-              <th scope="row">{{users.id}}</th>
-              <td>{{users.login}}</td>
-              <td>
+              <th  class="border border-top" scope="row">{{users.id}}</th>
+              <td class="border border-top">{{users.login}}</td>
+              <td class="border border-top">
                 {{users.lastName}}
               </td>
-              <td>{{users.firstName}}</td>
-              <td>{{users.middleName}}</td>
-              <td>{{users.url}}</td>
-              <td>
+              <td class="border "> {{users.firstName}}</td>
+              <td class="border"> {{users.middleName}}</td>
+              <td class="border border-top">{{users.url}}</td>
+              <td class="border border-top">
                 <div *ngFor="let role of users.roles">
                   <span class="shadow {{role.name|roles}}"> {{role.name|rolesName}}</span>
                 </div>

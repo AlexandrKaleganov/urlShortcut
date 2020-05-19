@@ -15,7 +15,7 @@ export class UsersComponent implements OnInit {
   userList: Users[];
   usersService: UsersService;
   totalItems: number;
-  itemsPerPage = 10;
+  itemsPerPage = 20;
   page = 1;
   currentRoles: Roles[];
 
