@@ -6,6 +6,7 @@ import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {CreateUserComponent} from './create-user/create-user.component';
 import {AuthService} from '../../core/auth/auth.service';
 import {Roles} from '../../shared/models/roles.model';
+import {HashAuthorityService} from '../../core/hash-authority.service';
 
 @Component({
   selector: 'app-users',
@@ -20,12 +21,8 @@ export class UsersComponent implements OnInit {
   page = 1;
   currentRoles: Roles[];
 
-  constructor(usersService: UsersService, public modalService: NgbModal, public authService: AuthService) {
+  constructor(usersService: UsersService, public modalService: NgbModal, public hashAuthorityService: HashAuthorityService) {
     this.usersService = usersService;
-    this.authService.getAuthority().subscribe(res => {
-      console.log(res.body);
-      this.currentRoles = res.body;
-    });
   }
 
   ngOnInit() {
@@ -66,13 +63,5 @@ export class UsersComponent implements OnInit {
 
   deleteFilters() {
     console.log('не реализовано');
-  }
-
-  isVisible(roles: any) {
-    if (this.currentRoles) {
-      return this.authService.isHasAnyAuthority(this.currentRoles, roles);
-    } else {
-      return false;
-    }
   }
 }

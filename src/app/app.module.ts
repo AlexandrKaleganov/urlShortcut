@@ -13,7 +13,6 @@ import {EntitiesModule} from './entities/entities.module';
     declarations: [
         AppComponent,
         HeaderComponent,
-        AuthorityDirective,
     ],
     imports: [
         EntitiesModule,
@@ -23,7 +22,6 @@ import {EntitiesModule} from './entities/entities.module';
     ],
     providers: [],
     exports: [
-        AuthorityDirective
     ],
     bootstrap: [AppComponent]
 })

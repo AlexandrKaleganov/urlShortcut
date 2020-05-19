@@ -16,7 +16,7 @@
               </button>
             </form>
           </div>
-          <div  *ngIf="isVisible('ADMIN')" class="btn-group float-right rounded">
+          <div *ngIf="hashAuthorityService.isVisible('ADMIN')" class="btn-group float-right rounded">
             <button
               class="btn btn-primary float-right jh-create-entity create-ticket"
               (click)="addNewUser()">
