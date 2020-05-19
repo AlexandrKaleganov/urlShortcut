@@ -11,10 +11,15 @@ export class CreateUserComponent implements OnInit {
 
   constructor(public activeModal: NgbActiveModal, private fb: FormBuilder) {
   }
-  // regForm = this.fb.group({
-  //   login: [null, ]
-  //   url: [null, [Validators.required]]
-  // });
+  regForm = this.fb.group({
+    login: [null, [Validators.required]],
+    pwd: [null, [Validators.required]]
+    url: [null, [Validators.required]]
+    url: [null, [Validators.required]]
+    url: [null, [Validators.required]]
+
+    url: [null, [Validators.required]]
+  });
 
   ngOnInit() {
   }
