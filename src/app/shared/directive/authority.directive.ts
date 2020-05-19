@@ -18,14 +18,14 @@ export class AuthorityDirective {
   constructor(private templateRef: TemplateRef<any>, private viewContainerRef: ViewContainerRef, public authService: AuthService) {
     this.authService.getAuthority().subscribe((res) => {
       this.authorities = res.body;
+      this.isVisible();
     });
   }
 
   isVisible(): boolean {
     this.viewContainerRef.clear();
     if (this.authorities) {
-      if (this.authService.isHasAnyAuthority(this.authorities, this.roles)
-      ) {
+      if (this.authService.isHasAnyAuthority(this.authorities, this.roles)) {
         this.viewContainerRef.createEmbeddedView(this.templateRef);
       }
     } else {

@@ -1,4 +1,4 @@
-import {Injectable} from '@angular/core';
+import {Injectable, OnDestroy} from '@angular/core';
 import {HttpClient, HttpResponse} from '@angular/common/http';
 import {GLOBAL_URL} from '../../shared/constant/url.constant';
 import {Users} from '../../shared/models/users.model';
@@ -9,13 +9,18 @@ import {Roles} from '../../shared/models/roles.model';
 @Injectable({
   providedIn: 'root'
 })
-export class AuthService {
+export class AuthService implements OnDestroy {
+
   url: string = GLOBAL_URL + '/api/auth';
   authToken: string = null;
   currentUser: string = null;
   private principal: AuthToken = null;
 
   constructor(private http: HttpClient) {
+  }
+
+  ngOnDestroy(): void {
+    this.clearJWTToken();
   }
 
   signIn(user: Users): Observable<HttpResponse<AuthToken>> {
@@ -55,14 +60,19 @@ export class AuthService {
   clearJWTToken() {
     this.principal = null;
     sessionStorage.clear();
+    console.log('successToken');
+    console.log(sessionStorage.getItem('successToken'));
   }
 
   isHasAnyAuthority(current: Roles[], authorityes: string[] | string): boolean {
-    console.log(current);
     let res = false;
     if (!this.isAuth()) {
       return false;
     }
+    console.log('current = ');
+    console.log(current);
+    console.log('authorityes');
+    console.log(authorityes);
     if (!Array.isArray(authorityes)) {
       authorityes = [authorityes];
     }

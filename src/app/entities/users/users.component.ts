@@ -4,9 +4,7 @@ import {UsersService} from './users.service';
 import {HttpParams} from '@angular/common/http';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {CreateUserComponent} from './create-user/create-user.component';
-import {AuthService} from '../../core/auth/auth.service';
 import {Roles} from '../../shared/models/roles.model';
-import {HashAuthorityService} from '../../core/hash-authority.service';
 
 @Component({
   selector: 'app-users',
@@ -21,7 +19,7 @@ export class UsersComponent implements OnInit {
   page = 1;
   currentRoles: Roles[];
 
-  constructor(usersService: UsersService, public modalService: NgbModal, public hashAuthorityService: HashAuthorityService) {
+  constructor(usersService: UsersService, public modalService: NgbModal) {
     this.usersService = usersService;
   }
 
