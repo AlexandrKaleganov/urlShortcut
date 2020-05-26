@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {Users} from '../../shared/models/users.model';
+import {User} from '../../shared/models/user.model';
 
 @Component({
   selector: 'app-show-registred-user',
@@ -7,9 +7,9 @@ import {Users} from '../../shared/models/users.model';
   styleUrls: ['./show-registred-user.component.css']
 })
 export class ShowRegistredUserComponent implements OnInit {
-  @Input() newUser: Users;
+  @Input() newUser: User;
   @Output()
-  eventEmitter: EventEmitter<Users> = new EventEmitter();
+  eventEmitter: EventEmitter<User> = new EventEmitter();
 
   constructor() {
   }

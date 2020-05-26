@@ -4,14 +4,14 @@
       <div class="card shadow mb-5 bg-white rounded">
         <div class="card-header align-middle shadow">
           <div class="float-left" style="padding-right: 10px">
-            <h3><span>Users</span></h3>
+            <h3><span>Пользователи</span></h3>
           </div>
           <div class="btn-group float-left rounded">
-            <button class="btn float-right btn-primary shadow rounded" (click)="showFilter()">
-              Show filters
+            <button class="btn float-right btn-primary shadow rounded"  style="border-right-color: white" (click)="showFilter()">
+              Отобразить фильтр
             </button>
-            <button class="btn float-right btn-danger shadow" (click)="deleteFilters()">
-              Delete filters
+            <button class="btn float-right btn-danger shadow"  style="border-left-color: white" (click)="deleteFilters()">
+              Очистить фильтры
             </button>
           </div>
           <div *appAuthority="['ADMIN']" class="btn-group float-right rounded">
@@ -28,28 +28,32 @@
             <tr>
               <th scope="col">ID</th>
               <th scope="col">Логин</th>
-              <th scope="col">LastName</th>
-              <th scope="col">FirstName</th>
-              <th scope="col">MiddleName</th>
-              <th scope="col">URL</th>
-              <th scope="col">ROLES</th>
+              <th scope="col">Фамилия</th>
+              <th scope="col">Имя</th>
+              <th scope="col">Отчество</th>
+              <th scope="col">Домен</th>
+              <th scope="col">Роли</th>
+              <th></th>
             </tr>
             </thead>
             <tbody>
-            <tr *ngFor="let users of userList">
-              <th  class="border border-top" scope="row">{{users.id}}</th>
-              <td class="border border-top">{{users.login}}</td>
+            <tr *ngFor="let user of userList">
+              <th  class="border border-top" scope="row">{{user.id}}</th>
+              <td class="border border-top">{{user.login}}</td>
               <td class="border border-top">
-                {{users.lastName}}
+                {{user.lastName}}
               </td>
-              <td class="border "> {{users.firstName}}</td>
-              <td class="border"> {{users.middleName}}</td>
-              <td class="border border-top">{{users.url}}</td>
+              <td class="border "> {{user.firstName}}</td>
+              <td class="border"> {{user.middleName}}</td>
+              <td class="border border-top">{{user.url}}</td>
               <td class="border border-top">
-                <div *ngFor="let role of users.roles">
+                <div *ngFor="let role of user.roles">
                   <span class="shadow {{role.name|roles}}"> {{role.name|rolesName}}</span>
                 </div>
               </td>
+              <td  class="border border-top">
+                <button *ngIf="isVisible(user)" class="btn float-right btn-secondary shadow rounded"
+                                                                            (click)="edit(user)">Редактировать</button></td>
             </tr>
             </tbody>
           </table>

@@ -1,5 +1,7 @@
 <div class="modal-header">
-  <h4 class="modal-title">Реистрация пользователя</h4>
+
+  <h4 *ngIf="!users.id" class="modal-title">Реистрация пользователя</h4>
+  <h4 *ngIf="users.id" class="modal-title">Редактирование пользователя</h4>
   <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
           (click)="clear()">&times;
   </button>
@@ -14,7 +16,17 @@
     <div class="form-group">
       <label class="form-control-label" for="pwd">Пароль</label>
       <input type="text" class="form-control shadow-sm bg-white rounded" name="pwd" id="pwd"
-             formControlName="pwd" autocomplete="off" placeholder="введите пароль"/>
+             formControlName="pwd" autocomplete="off" placeholder="введите пароль" required="{{!users.id}}" />
+    </div>
+    <div class="form-group">
+      <label class="form-control-label" for="roles">Выберте роль</label>
+
+      <ng-multiselect-dropdown  id="roles" formControlName="roles"
+        [placeholder]="'Список ролей'"
+        [data]="rolesList"
+        [settings]="settings"
+      >
+      </ng-multiselect-dropdown>
     </div>
     <div class="form-group">
       <label class="form-control-label" for="lastName">Фамилия</label>
@@ -46,7 +58,7 @@
       <button id="jhi-confirm-update-transportation" type="button" (click)="save()" style="border-left-color: white"
               [disabled]="editForm.invalid"
               class="btn btn-primary">
-        <span>Регистрация</span>
+        <span>Сохранить</span>
       </button>
     </div>
   </div>

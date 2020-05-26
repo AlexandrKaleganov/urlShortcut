@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
 import {FormBuilder, Validators} from '@angular/forms';
 import {AuthService} from '../../core/auth/auth.service';
-import {Users} from '../../shared/models/users.model';
+import {User} from '../../shared/models/user.model';
 
 @Component({
   selector: 'app-registry',
@@ -11,7 +11,7 @@ import {Users} from '../../shared/models/users.model';
 })
 export class RegistryComponent implements OnInit {
   isShowVisible = false;
-  users?: Users;
+  users?: User;
 
   constructor(public activeModal: NgbActiveModal, protected fb: FormBuilder, protected authService: AuthService) {
   }

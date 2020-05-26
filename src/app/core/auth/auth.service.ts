@@ -1,10 +1,10 @@
 import {Injectable, OnDestroy} from '@angular/core';
 import {HttpClient, HttpResponse} from '@angular/common/http';
 import {GLOBAL_URL} from '../../shared/constant/url.constant';
-import {Users} from '../../shared/models/users.model';
+import {User} from '../../shared/models/user.model';
 import {Observable} from 'rxjs';
 import {AuthToken} from '../../shared/models/auth-token.model';
-import {Roles} from '../../shared/models/roles.model';
+import {Role} from '../../shared/models/role.model';
 
 @Injectable({
   providedIn: 'root'
@@ -23,17 +23,17 @@ export class AuthService implements OnDestroy {
     this.clearJWTToken();
   }
 
-  signIn(user: Users): Observable<HttpResponse<AuthToken>> {
+  signIn(user: User): Observable<HttpResponse<AuthToken>> {
     return this.http.post<AuthToken>(this.url, user, {observe: 'response'});
   }
 
-  registry(url: string): Observable<HttpResponse<Users>> {
-    return this.http.post<Users>(this.url + '/registry', url, {observe: 'response'});
+  registry(url: string): Observable<HttpResponse<User>> {
+    return this.http.post<User>(this.url + '/registry', url, {observe: 'response'});
   }
 
-  getAuthority(): Observable<HttpResponse<Roles[]>> {
-    return this.http.get<Roles[]>(this.url + '/roles/', {
-      headers: {Authorization: `Bearer ${this.getPrincipal()}`},
+  getAuthority(): Observable<HttpResponse<Role[]>> {
+    return this.http.get<Role[]>(this.url + '/roles/', {
+      headers: {Authorization: `Bearer ${this.getCurrentToken()}`},
       observe: 'response'
     });
   }
@@ -45,12 +45,15 @@ export class AuthService implements OnDestroy {
   /**
    * получить текущий токен
    */
-  getPrincipal(): string {
+  getCurrentToken(): string {
     return sessionStorage.getItem('successToken');
   }
-
+  getCurrentLogin() {
+    return sessionStorage.getItem('currentLogin');
+  }
   setPrincipal(auth: AuthToken) {
     this.principal = auth;
+    sessionStorage.setItem('currentLogin', auth.username);
     sessionStorage.setItem('successToken', auth.jwtToken);
   }
 
@@ -62,7 +65,7 @@ export class AuthService implements OnDestroy {
     sessionStorage.clear();
   }
 
-  isHasAnyAuthority(current: Roles[], authorityes: string[] | string): boolean {
+  isHasAnyAuthority(current: Role[], authorityes: string[] | string): boolean {
     let res = false;
     if (!this.isAuth()) {
       return false;

@@ -1,6 +1,6 @@
-import {Roles} from './roles.model';
+import {Role} from './role.model';
 
-export class Users {
+export class User {
   constructor(
     public id?: number,
     public login?: string,
@@ -10,7 +10,7 @@ export class Users {
     public middleName?: string,
     public url?: string,
     public errorMessage?: string,
-    public roles?: Roles[]
+    public roles?: Role[]
   ) {
   }
 }

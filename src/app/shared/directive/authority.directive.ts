@@ -1,13 +1,13 @@
 import {Directive, Input, TemplateRef, ViewContainerRef} from '@angular/core';
 import {AuthService} from '../../core/auth/auth.service';
-import {Roles} from '../models/roles.model';
+import {Role} from '../models/role.model';
 
 @Directive({
   selector: '[appAuthority]'
 })
 export class AuthorityDirective {
   roles: string[] = [];   // список ролей, который должны быть у пользователя
-  authorities: Roles[];   // список ролей текущего пользователя
+  authorities: Role[];   // список ролей текущего пользователя
 
   @Input()
   set appAuthority(value: string | string[]) {

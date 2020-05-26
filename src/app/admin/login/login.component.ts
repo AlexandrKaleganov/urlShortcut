@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
 import {FormBuilder, Validators} from '@angular/forms';
 import {AuthService} from '../../core/auth/auth.service';
-import {Users} from '../../shared/models/users.model';
+import {User} from '../../shared/models/user.model';
 
 @Component({
   selector: 'app-login',
@@ -27,15 +27,15 @@ export class LoginComponent implements OnInit {
   login() {
     this.authService.signIn(this.createUser()).subscribe(res => {
       this.authService.setPrincipal(res.body);
-      console.log(this.authService.getPrincipal());
+      console.log(this.authService.getCurrentToken());
       this.activeModal.dismiss();
     }, error => {
       this.errorMessage = 'Не верный логин или пароль';
     });
   }
 
-  createUser(): Users {
-    return new Users(null, this.loginForm.get('login').value, this.loginForm.get('password').value);
+  createUser(): User {
+    return new User(null, this.loginForm.get('login').value, this.loginForm.get('password').value);
   }
 
   closeError() {
