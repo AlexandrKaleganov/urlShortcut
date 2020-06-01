@@ -8,7 +8,7 @@ export class User {
     public lastName?: string,
     public firstName?: string,
     public middleName?: string,
-    public url?: string,
+    public domain?: string,
     public errorMessage?: string,
     public roles?: Role[]
   ) {

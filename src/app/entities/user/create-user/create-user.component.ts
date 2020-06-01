@@ -32,7 +32,7 @@ export class CreateUserComponent implements OnInit {
     lastName: [null, [Validators.required]],
     firstName: [null, [Validators.required]],
     middleName: [null, [Validators.required]],
-    url: [null, [Validators.required]]
+    domain: [null, [Validators.required]]
   });
 
   ngOnInit() {
@@ -48,7 +48,7 @@ export class CreateUserComponent implements OnInit {
       lastName: this.users.lastName,
       firstName: this.users.firstName,
       middleName: this.users.middleName,
-      url: this.users.url
+      domain: this.users.domain
     });
   }
 
@@ -91,7 +91,7 @@ export class CreateUserComponent implements OnInit {
       lastName: this.editForm.get(['lastName']).value,
       firstName: this.editForm.get(['firstName']).value,
       middleName: this.editForm.get(['middleName']).value,
-      url: this.editForm.get(['url']).value,
+      domain: this.editForm.get(['domain']).value,
       roles: this.editForm.get(['roles']).value
     };
   }

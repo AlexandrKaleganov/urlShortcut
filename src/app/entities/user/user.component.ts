@@ -20,7 +20,7 @@ export class UserComponent implements OnInit {
   itemsPerPage = 20;
   page = 1;
   loginFilter: string;
-  urlFilter: string;
+  domainFilter: string;
   firstNameFilter: string;
   currentRoles: Role[];
 
@@ -47,8 +47,8 @@ export class UserComponent implements OnInit {
     if (this.loginFilter) {
       options = options.set('login', this.loginFilter);
     }
-    if (this.urlFilter) {
-      options = options.set('url', this.urlFilter);
+    if (this.domainFilter) {
+      options = options.set('domain', this.domainFilter);
     }
     if (this.firstNameFilter) {
       options = options.set('firstName', this.firstNameFilter);
@@ -79,13 +79,13 @@ export class UserComponent implements OnInit {
   showFilter() {
     const modelRef = this.modalService.open(FilterUserComponent, {size: 'lg', backdrop: 'static'});
     modelRef.componentInstance.loginFilter = this.loginFilter;
-    modelRef.componentInstance.urlFilter = this.urlFilter;
+    modelRef.componentInstance.domainFilter = this.domainFilter;
     modelRef.componentInstance.firstNameFilter = this.firstNameFilter;
     modelRef.result.then(result => {
       console.log(result);
       this.loginFilter = result.loginFilter;
       this.firstNameFilter = result.firstNameFilter;
-      this.urlFilter = result.urlFilter;
+      this.domainFilter = result.domainFilter;
       this.loadPage(1);
     });
   }
@@ -93,7 +93,7 @@ export class UserComponent implements OnInit {
   deleteFilters() {
     this.loginFilter = null;
     this.firstNameFilter = null;
-    this.urlFilter = null;
+    this.domainFilter = null;
     this.loadPage(1);
   }
 

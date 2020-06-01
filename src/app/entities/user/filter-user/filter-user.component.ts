@@ -8,7 +8,7 @@ import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
 })
 export class FilterUserComponent implements OnInit {
   loginFilter: string;
-  urlFilter: string;
+  domainFilter: string;
   firstNameFilter: string;
 
   constructor(public activeModal: NgbActiveModal) {
@@ -25,7 +25,7 @@ export class FilterUserComponent implements OnInit {
     this.activeModal.close({
       loginFilter: this.loginFilter,
       firstNameFilter: this.firstNameFilter,
-      urlFilter: this.urlFilter
+      domainFilter: this.domainFilter
     });
   }
 }

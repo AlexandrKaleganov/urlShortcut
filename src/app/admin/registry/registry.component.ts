@@ -17,15 +17,15 @@ export class RegistryComponent implements OnInit {
   }
 
   regForm = this.fb.group({
-    url: [null, [Validators.required]]
+    domain: [null, [Validators.required]]
   });
 
   ngOnInit() {
   }
 
   registry() {
-    console.log(this.regForm.get('url').value);
-    this.authService.registry(this.regForm.get('url').value).subscribe(res => {
+    console.log(this.regForm.get('domain').value);
+    this.authService.registry(this.regForm.get('domain').value).subscribe(res => {
       console.log(res.body);
       this.users = res.body;
       if (this.users.login !== null) {
