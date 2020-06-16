@@ -48,13 +48,18 @@ export class AuthService implements OnDestroy {
   getCurrentToken(): string {
     return sessionStorage.getItem('successToken');
   }
+  getCurrentDomain() {
+    return sessionStorage.getItem('domain');
+  }
   getCurrentLogin() {
     return sessionStorage.getItem('currentLogin');
   }
+
   setPrincipal(auth: AuthToken) {
     this.principal = auth;
     sessionStorage.setItem('currentLogin', auth.username);
     sessionStorage.setItem('successToken', auth.jwtToken);
+    sessionStorage.setItem('domain', auth.domain);
   }
 
   /**
@@ -101,6 +106,6 @@ export class AuthService implements OnDestroy {
     if (this.principal != null) {
       return this.principal.roles.some((authority: string) => authorityes.includes(authority));
     }
-    return true; // todo: переделать то заглушка
+    return true;
   }
 }

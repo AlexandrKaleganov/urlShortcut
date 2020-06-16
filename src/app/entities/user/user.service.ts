@@ -5,6 +5,7 @@ import {Observable} from 'rxjs';
 import {User} from '../../shared/models/user.model';
 import {AuthService} from '../../core/auth/auth.service';
 import {Role} from '../../shared/models/role.model';
+import {log} from 'util';
 
 @Injectable({
   providedIn: 'root'
@@ -48,6 +49,13 @@ export class UserService {
    */
   getAllRoles(): Observable<HttpResponse<Role[]>> {
     return this.http.get<Role[]>(this.rootUrl + '/roles', {
+      headers: {Authorization: `Bearer ${this.authService.getCurrentToken()}`},
+      observe: 'response'
+    });
+  }
+
+  findUserByLogin(login: string): Observable<HttpResponse<Role[]>> {
+    return this.http.get<Role[]>(this.url + '/' + login, {
       headers: {Authorization: `Bearer ${this.authService.getCurrentToken()}`},
       observe: 'response'
     });
