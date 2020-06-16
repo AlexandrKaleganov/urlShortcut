@@ -8,6 +8,7 @@ import {Role} from '../../shared/models/role.model';
 import {Url} from '../../shared/models/url.model';
 import {HttpParams} from '@angular/common/http';
 import {CreateUserComponent} from '../user/create-user/create-user.component';
+import {CreateUrlComponent} from './create-url/create-url.component';
 
 @Component({
   selector: 'app-url',
@@ -46,8 +47,9 @@ export class UrlComponent implements OnInit {
       options = options.set('login', this.loginFilter);
     }
     this.urlService.findAll(options).subscribe(res => {
-      this.urlList = res.body;
-      this.totalItems = Number(res.headers.get('totalSize'));
+      console.log(res);
+      this.urlList = res.body.content;
+      this.totalItems = res.body.totalElements;
       console.warn(this.totalItems);
     });
   }
@@ -57,8 +59,7 @@ export class UrlComponent implements OnInit {
   }
 
   addNewUrl() {
-    const modalRef = this.modalService.open(CreateUserComponent, {size: 'lg', backdrop: 'static'});
-    modalRef.componentInstance.currentRoles = this.currentRoles;
+   this.modalService.open(CreateUrlComponent, {size: 'lg', backdrop: 'static'});
   }
 
   showFilter() {

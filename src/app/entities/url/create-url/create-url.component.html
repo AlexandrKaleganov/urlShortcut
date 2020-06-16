@@ -8,9 +8,9 @@
 <form name="regForm" role="form" novalidate [formGroup]="editForm">
   <div class="modal-body">
     <div class="form-group">
-      <label class="form-control-label" for="url">Url</label>
+      <label class="form-control-label" for="url">Url  необходимо ввести https://{{currentDomain}}/**</label>
       <input type="text" class="form-control shadow-sm bg-white rounded" name="url" id="url"
-             formControlName="url" autocomplete="off" placeholder="введите url http://akaleganov.ru/**"/>
+             formControlName="url" autocomplete="off" />
     </div>
   </div>
   <div class="modal-footer">

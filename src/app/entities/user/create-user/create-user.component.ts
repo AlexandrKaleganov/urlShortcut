@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
 import {FormBuilder, Validators} from '@angular/forms';
 import {User} from '../../../shared/models/user.model';
@@ -12,7 +12,7 @@ import {AuthService} from '../../../core/auth/auth.service';
   templateUrl: './create-user.component.html',
   styleUrls: ['./create-user.component.css']
 })
-export class CreateUserComponent implements OnInit {
+export class CreateUserComponent implements OnInit, OnDestroy {
   users: User = new User();
   usersService: UserService;
   rolesList: Role[];
@@ -126,5 +126,9 @@ export class CreateUserComponent implements OnInit {
       itemsShowLimit: 10,
       allowSearchFilter: true
     };
+  }
+
+  ngOnDestroy(): void {
+    this.users = new User();
   }
 }

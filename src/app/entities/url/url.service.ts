@@ -5,6 +5,7 @@ import {Observable} from 'rxjs';
 import {User} from '../../shared/models/user.model';
 import {AuthService} from '../../core/auth/auth.service';
 import {Url} from '../../shared/models/url.model';
+import {PageUrl} from '../../shared/models/pageUrl.model';
 
 @Injectable({
   providedIn: 'root'
@@ -16,9 +17,9 @@ export class UrlService {
   constructor(private http: HttpClient, protected authService: AuthService,) {
   }
 
-  findAll(options: HttpParams): Observable<HttpResponse<Url[]>> {
+  findAll(options: HttpParams): Observable<HttpResponse<PageUrl>> {
     console.log(this.authService.getCurrentToken());
-    return this.http.get<Url[]>(this.url, {
+    return this.http.get<PageUrl>(this.url, {
       params: options,
       headers: {Authorization: `Bearer ${this.authService.getCurrentToken()}`},
       observe: 'response'

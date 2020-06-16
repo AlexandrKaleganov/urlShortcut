@@ -54,8 +54,8 @@ export class UserService {
     });
   }
 
-  findUserByLogin(login: string): Observable<HttpResponse<Role[]>> {
-    return this.http.get<Role[]>(this.url + '/' + login, {
+  findUserByLogin(login: string): Observable<HttpResponse<User>> {
+    return this.http.get<User>(this.url + '/' + login, {
       headers: {Authorization: `Bearer ${this.authService.getCurrentToken()}`},
       observe: 'response'
     });

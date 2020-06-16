@@ -56,6 +56,7 @@ export class AuthService implements OnDestroy {
   }
 
   setPrincipal(auth: AuthToken) {
+    console.log(auth);
     this.principal = auth;
     sessionStorage.setItem('currentLogin', auth.username);
     sessionStorage.setItem('successToken', auth.jwtToken);

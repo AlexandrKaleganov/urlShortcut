@@ -29,6 +29,7 @@
               <th scope="col">ID</th>
               <th scope="col">Ссылка</th>
               <th scope="col">Короткая ссылка</th>
+              <th scope="col">Ответственный пользователь</th>
               <th></th>
             </tr>
             </thead>
@@ -39,9 +40,11 @@
               <td class="border border-top">
                 {{url.shortCut}}
               </td>
+              <td class="border border-top">{{url.user.login}}</td>
+
               <td  class="border border-top">
                 <button class="btn float-right btn-secondary shadow rounded"
-                        (click)="redirect(url.shortCut)">Редактировать</button></td>
+                        (click)="redirect(url.shortCut)">Перейти по ссылке</button></td>
             </tr>
             </tbody>
           </table>
