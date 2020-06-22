@@ -26,6 +26,12 @@ export class UrlService {
     });
   }
 
+  getUrlByShortCut(shortCut: string): Observable<HttpResponse<Url>> {
+    return this.http.get<Url>(this.rootUrl + '/getUrlByShortCut/' + shortCut, {
+      observe: 'response'
+    });
+  }
+
   save(options: Url): Observable<HttpResponse<Url>> {
     return this.http.post<Url>(this.url, options,
       {

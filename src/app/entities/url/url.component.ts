@@ -1,14 +1,12 @@
 import {Component, OnInit} from '@angular/core';
-import {UserService} from '../user/user.service';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {AuthService} from '../../core/auth/auth.service';
 import {UrlService} from './url.service';
-import {User} from '../../shared/models/user.model';
 import {Role} from '../../shared/models/role.model';
 import {Url} from '../../shared/models/url.model';
 import {HttpParams} from '@angular/common/http';
-import {CreateUserComponent} from '../user/create-user/create-user.component';
 import {CreateUrlComponent} from './create-url/create-url.component';
+import {Route} from '@angular/router';
 
 @Component({
   selector: 'app-url',
@@ -24,7 +22,7 @@ export class UrlComponent implements OnInit {
   loginFilter: string;
   currentRoles: Role[];
 
-  constructor(urlService: UrlService, public modalService: NgbModal, public authService: AuthService) {
+  constructor( urlService: UrlService, public modalService: NgbModal, public authService: AuthService) {
     this.urlService = urlService;
   }
 
@@ -34,6 +32,7 @@ export class UrlComponent implements OnInit {
       this.loadPage();
     });
   }
+
   loadPage(page?: number) {
     const pageToLoad: number = page ? page : this.page;
     console.log(pageToLoad);
@@ -55,11 +54,11 @@ export class UrlComponent implements OnInit {
   }
 
   redirect(shortCut: string) {
-    console.log(shortCut);
+    this.urlService.getUrlByShortCut(shortCut).subscribe(res => console.log(res.body));
   }
 
   addNewUrl() {
-   this.modalService.open(CreateUrlComponent, {size: 'lg', backdrop: 'static'});
+    this.modalService.open(CreateUrlComponent, {size: 'lg', backdrop: 'static'});
   }
 
   showFilter() {
