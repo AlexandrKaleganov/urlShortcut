@@ -7,6 +7,7 @@ import {NgbPaginationModule} from '@ng-bootstrap/ng-bootstrap';
 import {CreateUrlComponent} from './create-url/create-url.component';
 import {ReactiveFormsModule} from '@angular/forms';
 import {AdminModule} from '../../admin/admin.module';
+import {UserModule} from '../user/user.module';
 
 
 @NgModule({
@@ -17,7 +18,7 @@ import {AdminModule} from '../../admin/admin.module';
     UrlRoutingModule,
     NgbPaginationModule,
     ReactiveFormsModule,
-    AdminModule
+    AdminModule, UserModule
   ]
 })
 export class UrlModule {
