@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Inject, OnInit} from '@angular/core';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {AuthService} from '../../core/auth/auth.service';
 import {UrlService} from './url.service';
@@ -6,7 +6,7 @@ import {Role} from '../../shared/models/role.model';
 import {Url} from '../../shared/models/url.model';
 import {HttpParams} from '@angular/common/http';
 import {CreateUrlComponent} from './create-url/create-url.component';
-import {Route} from '@angular/router';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-url',
@@ -22,7 +22,9 @@ export class UrlComponent implements OnInit {
   loginFilter: string;
   currentRoles: Role[];
 
-  constructor( urlService: UrlService, public modalService: NgbModal, public authService: AuthService) {
+  constructor(urlService: UrlService,
+              public modalService: NgbModal,
+              public authService: AuthService) {
     this.urlService = urlService;
   }
 
@@ -54,7 +56,9 @@ export class UrlComponent implements OnInit {
   }
 
   redirect(shortCut: string) {
-    this.urlService.getUrlByShortCut(shortCut).subscribe(res => console.log(res.body));
+    this.urlService.getUrlByShortCut(shortCut).subscribe(res => {
+      window.open(res.body.origin);
+    });
   }
 
   addNewUrl() {
