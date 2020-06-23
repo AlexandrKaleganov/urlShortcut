@@ -21,11 +21,12 @@
           <a *ngIf="authService.isAuth()" class="dropdown-item" routerLink="/usersList">Пользователи</a>
           <a *ngIf="authService.isAuth()"  class="dropdown-item" routerLink="/urlList">Ссылки</a>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#"> Доп ссылка</a>
+<!--          <a class="dropdown-item" href="#"> Доп ссылка</a>-->
         </div>
       </li>
       <li class="nav-item">
-        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Выключенные ссылки</a>
+<!--        <a class="nav-link disabled" href="#" (click)="redirectLink()" >Перейти по короткой ссылке</a>-->
+        <a class="nav-link" href="javascript:void(0);" (click)="redirectLink()">Перейти по короткой ссылке</a>
       </li>
     </ul>
     <a  class="navbar-brand text-right" href="#"></a>

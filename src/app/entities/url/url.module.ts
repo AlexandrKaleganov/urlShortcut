@@ -8,11 +8,12 @@ import {CreateUrlComponent} from './create-url/create-url.component';
 import {ReactiveFormsModule} from '@angular/forms';
 import {AdminModule} from '../../admin/admin.module';
 import {UserModule} from '../user/user.module';
+import { UrlRedirectComponent } from './url-redirect/url-redirect.component';
 
 
 @NgModule({
-  declarations: [UrlComponent, CreateUrlComponent],
-  entryComponents: [CreateUrlComponent],
+  declarations: [UrlComponent, CreateUrlComponent, UrlRedirectComponent],
+  entryComponents: [CreateUrlComponent, UrlRedirectComponent],
   imports: [
     CommonModule,
     UrlRoutingModule,

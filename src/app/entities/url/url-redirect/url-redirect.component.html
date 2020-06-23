@@ -1,0 +1,31 @@
+<div class="modal-header">
+
+  <h4 class="modal-title">Перейти по короткой ссылке</h4>
+  <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+          (click)="clear()">&times;
+  </button>
+</div>
+<form name="regForm" role="form" novalidate [formGroup]="editForm">
+  <div class="modal-body">
+    <div class="form-group">
+      <label class="form-control-label" for="shortCut">Введите короткую ссылку 'Fdfd'</label>
+      <input type="text" class="form-control shadow-sm bg-white rounded" name="shortCut" id="shortCut"
+             formControlName="shortCut" autocomplete="off" />
+    </div>
+  </div>
+  <div class="modal-footer">
+    <div class="btn-group float-right shadow rounded">
+      <button type="button" style="border-right-color: white"
+              class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
+        <span>Назад</span>
+      </button>
+      <button id="jhi-confirm-update-transportation" type="button" (click)="redirect()" style="border-left-color: white"
+              [disabled]="editForm.invalid"
+              class="btn btn-primary">
+        <span>Перейти по ссылке</span>
+      </button>
+    </div>
+  </div>
+</form>
+<app-error *ngIf="url && url.errorMessage" [errorMessage]="url.errorMessage"
+           (closeAlert)="closeError()"></app-error>
