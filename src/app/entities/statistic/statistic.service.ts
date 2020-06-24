@@ -10,9 +10,9 @@ import {PageStatistic} from '../../shared/models/page-statistic.model';
 })
 export class StatisticService {
   private rootUrl: string = GLOBAL_URL + '/api';
-  private url: string = GLOBAL_URL + '/api/url';
+  private url: string = GLOBAL_URL + '/api/statistic';
 
-  constructor(private http: HttpClient, protected authService: AuthService,) {
+  constructor(private http: HttpClient, protected authService: AuthService) {
   }
 
   findAll(options: HttpParams): Observable<HttpResponse<PageStatistic>> {

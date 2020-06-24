@@ -1,1 +1,43 @@
-<p>statistic works!</p>
+<div class="justify-content-center">
+  <div class="row">
+    <div class="col-12">
+      <div class="card shadow mb-5 bg-white rounded">
+        <div class="card-header align-middle shadow">
+          <div class="float-left" style="padding-right: 10px">
+            <h3><span>Статистика</span></h3>
+          </div>
+        </div>
+        <div class="card-body shadow" style="padding: 0" >
+          <table class="table table-hover">
+            <thead class="thead-dark">
+            <tr>
+              <th scope="col">ID</th>
+              <th scope="col">Ссылка</th>
+              <th scope="col">Коилчество переходов</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let statistic of statisticList">
+              <th  class="border border-top" scope="row">{{statistic.id}}</th>
+              <td class="border border-top">{{statistic.url.origin}}</td>
+              <td class="border border-top">
+                {{statistic.count}}
+              </td>
+            </tr>
+            </tbody>
+          </table>
+          <div class="row justify-content-center">
+            <span>{{(page - 1) * itemsPerPage + 1 + ' - ' + itemsPerPage * page}}</span>
+          </div>
+          <div class="row justify-content-center">
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [pageSize]="itemsPerPage" [maxSize]="5"
+                            [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage(page)"></ngb-pagination>
+          </div>
+        </div>
+        <div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
