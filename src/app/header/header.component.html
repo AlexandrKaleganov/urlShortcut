@@ -21,7 +21,7 @@
           <a *ngIf="authService.isAuth()" class="dropdown-item" routerLink="/usersList">Пользователи</a>
           <a *ngIf="authService.isAuth()"  class="dropdown-item" routerLink="/urlList">Ссылки</a>
           <div class="dropdown-divider"></div>
-<!--          <a class="dropdown-item" href="#"> Доп ссылка</a>-->
+          <a *ngIf="authService.isAuth()"  class="dropdown-item" routerLink="/statisticList">Статистика</a>
         </div>
       </li>
       <li class="nav-item">

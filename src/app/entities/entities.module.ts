@@ -3,6 +3,7 @@ import {CommonModule} from '@angular/common';
 import {RouterModule, Routes} from '@angular/router';
 import {UserModule} from './user/user.module';
 import {UrlModule} from './url/url.module';
+import {StatisticModule} from './statistic/statistic.module';
 
 const routes: Routes = [
   {
@@ -12,13 +13,17 @@ const routes: Routes = [
   {
     path: 'urlList',
     loadChildren: () => import('./url/url.module').then(m => m.UrlModule)
+  },
+  {
+    path: 'statisticList',
+    loadChildren: () => import('./statistic/statistic.module').then(m => m.StatisticModule)
   }
 ];
 
 @NgModule({
   declarations: [],
   imports: [RouterModule.forChild(routes),
-    CommonModule, UserModule, UrlModule
+    CommonModule, UserModule, UrlModule, StatisticModule
   ]
 })
 export class EntitiesModule {
