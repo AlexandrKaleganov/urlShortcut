@@ -78,7 +78,9 @@ export class CreateUserComponent implements OnInit, OnDestroy {
       this.users.errorMessage = res.body.errorMessage;
     } else {
       console.log(res.body);
-      this.activeModal.close();
+      this.activeModal.close({
+        res: true
+      });
     }
   }
 

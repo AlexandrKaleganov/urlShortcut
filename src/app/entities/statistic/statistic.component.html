@@ -1,6 +1,6 @@
 <div class="justify-content-center">
   <div class="row">
-    <div class="col-12">
+    <div class="col-12" style="padding: 10px">
       <div class="card shadow mb-5 bg-white rounded">
         <div class="card-header align-middle shadow">
           <div class="float-left" style="padding-right: 10px">
@@ -18,9 +18,9 @@
             </thead>
             <tbody>
             <tr *ngFor="let statistic of statisticList">
-              <th  class="border border-top" scope="row">{{statistic.id}}</th>
-              <td class="border border-top">{{statistic.url.origin}}</td>
-              <td class="border border-top">
+              <th  class="border border-top text-center" scope="row">{{statistic.id}}</th>
+              <td class="border border-top text-center">{{statistic.urlDTO.origin}}</td>
+              <td class="border border-top text-center">
                 {{statistic.count}}
               </td>
             </tr>

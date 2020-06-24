@@ -3,7 +3,7 @@ import {Url} from './url.model';
 export class Statistic {
   constructor(
     public id?: number,
-    public url?: Url,
+    public urlDTO?: Url,
     public count?: number,
   ) {
   }

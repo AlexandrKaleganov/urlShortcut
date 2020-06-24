@@ -38,13 +38,13 @@ export class CreateUrlComponent implements OnInit, OnDestroy {
   }
 
   clear() {
-    this.activeModal.dismiss();
+    this.activeModal.close();
   }
 
   save() {
     console.log('сохраняем урл');
     console.log(this.editForm.get('url').value);
-    if (this.editForm.get('url').value !== 'https://' +  this.currentDomain + '/') {
+    if (this.editForm.get('url').value !== 'https://' + this.currentDomain + '/') {
       this.urlService.save(this.editForm.get('url').value).subscribe(res => {
         this.saveResult(res);
       });
@@ -64,7 +64,9 @@ export class CreateUrlComponent implements OnInit, OnDestroy {
       this.url.errorMessage = res.body.errorMessage;
     } else {
       console.log(res.body);
-      this.activeModal.close();
+      this.activeModal.close({
+        res: true
+      });
     }
   }
 

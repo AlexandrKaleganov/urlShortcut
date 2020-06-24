@@ -1,10 +1,9 @@
-import {Url} from './url.model';
-
-export class PageUrl {
+export class PageModel<E> {
   constructor(
-    public content?: Url[],
+    public content?: E[],
     public total?: number,
     public totalElements?: number,
   ) {
   }
 }
+

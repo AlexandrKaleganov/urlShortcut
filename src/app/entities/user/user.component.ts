@@ -54,8 +54,8 @@ export class UserComponent implements OnInit {
       options = options.set('firstName', this.firstNameFilter);
     }
     this.usersService.findAll(options).subscribe(res => {
-      this.userList = res.body;
-      this.totalItems = Number(res.headers.get('totalSize'));
+      this.userList = res.body.content;
+      this.totalItems = res.body.totalElements;
       console.warn(this.totalItems);
     });
   }
@@ -63,6 +63,11 @@ export class UserComponent implements OnInit {
   addNewUser() {
     const modelRef = this.modalService.open(CreateUserComponent, {size: 'lg', backdrop: 'static'});
     modelRef.componentInstance.currentRoles = this.currentRoles;
+    modelRef.result.then(res=> {
+      if (res) {
+        this.loadPage(1);
+      }
+    });
   }
 
   delete(user: User): void {
@@ -74,6 +79,11 @@ export class UserComponent implements OnInit {
     modelRef.componentInstance.users = user;
     modelRef.componentInstance.currentRoles = this.currentRoles;
     modelRef.componentInstance.init();
+    modelRef.result.then(res=> {
+      if (res) {
+        this.loadPage(1);
+      }
+    });
   }
 
   showFilter() {
@@ -83,10 +93,12 @@ export class UserComponent implements OnInit {
     modelRef.componentInstance.firstNameFilter = this.firstNameFilter;
     modelRef.result.then(result => {
       console.log(result);
-      this.loginFilter = result.loginFilter;
-      this.firstNameFilter = result.firstNameFilter;
-      this.domainFilter = result.domainFilter;
-      this.loadPage(1);
+      if (result) {
+        this.loginFilter = result.loginFilter;
+        this.firstNameFilter = result.firstNameFilter;
+        this.domainFilter = result.domainFilter;
+        this.loadPage(1);
+      }
     });
   }
 

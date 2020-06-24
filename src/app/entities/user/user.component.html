@@ -1,6 +1,6 @@
 <div class="justify-content-center">
   <div class="row">
-    <div class="col-12">
+    <div class="col-12" style="padding: 10px">
       <div class="card shadow mb-5 bg-white rounded">
         <div class="card-header align-middle shadow">
           <div class="float-left" style="padding-right: 10px">
@@ -38,22 +38,25 @@
             </thead>
             <tbody>
             <tr *ngFor="let user of userList">
-              <th  class="border border-top" scope="row">{{user.id}}</th>
-              <td class="border border-top">{{user.login}}</td>
-              <td class="border border-top">
+              <th  class="border border-top text-center" scope="row">{{user.id}}</th>
+              <td class="border border-top text-center">{{user.login}}</td>
+              <td class="border border-top text-center">
                 {{user.lastName}}
               </td>
-              <td class="border "> {{user.firstName}}</td>
-              <td class="border"> {{user.middleName}}</td>
-              <td class="border border-top">{{user.domain}}</td>
-              <td class="border border-top">
+              <td class="border text-center"> {{user.firstName}}</td>
+              <td class="border text-center" > {{user.middleName}}</td>
+              <td class="border border-top text-center">{{user.domain}}</td>
+              <td class="border border-top text-center">
                 <div *ngFor="let role of user.roles">
                   <span class="shadow {{role.name|roles}}"> {{role.name|rolesName}}</span>
                 </div>
               </td>
-              <td  class="border border-top">
-                <button *ngIf="isVisible(user)" class="btn float-right btn-secondary shadow rounded"
-                                                                            (click)="edit(user)">Редактировать</button></td>
+              <td  class="border border-top text-center">
+                <div class="btn-group">
+                <button *ngIf="isVisible(user)" class="btn btn-sm float-right btn-secondary shadow rounded"
+                                                                            (click)="edit(user)">Редактировать</button>
+                </div>
+              </td>
             </tr>
             </tbody>
           </table>

@@ -1,4 +1,4 @@
-import { PageStatistic } from './page-statistic.model';
+import { PageModel } from './page-model.model';
 
 describe('PageStatistic', () => {
   it('should create an instance', () => {

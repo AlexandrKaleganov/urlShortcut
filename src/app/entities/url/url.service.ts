@@ -2,10 +2,9 @@ import {Injectable} from '@angular/core';
 import {GLOBAL_URL} from '../../shared/constant/url.constant';
 import {HttpClient, HttpParams, HttpResponse} from '@angular/common/http';
 import {Observable} from 'rxjs';
-import {User} from '../../shared/models/user.model';
 import {AuthService} from '../../core/auth/auth.service';
 import {Url} from '../../shared/models/url.model';
-import {PageUrl} from '../../shared/models/pageUrl.model';
+import {PageModel} from '../../shared/models/page-model.model';
 
 @Injectable({
   providedIn: 'root'
@@ -17,9 +16,9 @@ export class UrlService {
   constructor(private http: HttpClient, protected authService: AuthService,) {
   }
 
-  findAll(options: HttpParams): Observable<HttpResponse<PageUrl>> {
+  findAll(options: HttpParams): Observable<HttpResponse<PageModel<Url>>> {
     console.log(this.authService.getCurrentToken());
-    return this.http.get<PageUrl>(this.url, {
+    return this.http.get<PageModel<Url>>(this.url, {
       params: options,
       headers: {Authorization: `Bearer ${this.authService.getCurrentToken()}`},
       observe: 'response'

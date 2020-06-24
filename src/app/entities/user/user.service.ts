@@ -6,6 +6,7 @@ import {User} from '../../shared/models/user.model';
 import {AuthService} from '../../core/auth/auth.service';
 import {Role} from '../../shared/models/role.model';
 import {log} from 'util';
+import {PageModel} from '../../shared/models/page-model.model';
 
 @Injectable({
   providedIn: 'root'
@@ -17,9 +18,9 @@ export class UserService {
   constructor(private http: HttpClient, protected authService: AuthService) {
   }
 
-  findAll(options: HttpParams): Observable<HttpResponse<User[]>> {
+  findAll(options: HttpParams): Observable<HttpResponse<PageModel<User>>> {
     console.log(this.authService.getCurrentToken());
-    return this.http.get<User[]>(this.url, {
+    return this.http.get<PageModel<User>>(this.url, {
       params: options,
       headers: {Authorization: `Bearer ${this.authService.getCurrentToken()}`},
       observe: 'response'

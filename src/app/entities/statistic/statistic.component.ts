@@ -45,7 +45,8 @@ export class StatisticComponent implements OnInit {
     options = options.set('size', this.itemsPerPage.toString());
     options = options.set('sort', 'id');
     this.statisticService.findAll(options).subscribe(res => {
-      console.log(res);
+      console.log('выводим статистику');
+      console.log(res.body.content);
       this.statisticList = res.body.content;
       this.totalItems = res.body.totalElements;
       console.warn(this.totalItems);

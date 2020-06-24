@@ -1,4 +1,4 @@
-import {Component, Inject, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {AuthService} from '../../core/auth/auth.service';
 import {UrlService} from './url.service';
@@ -6,7 +6,8 @@ import {Role} from '../../shared/models/role.model';
 import {Url} from '../../shared/models/url.model';
 import {HttpParams} from '@angular/common/http';
 import {CreateUrlComponent} from './create-url/create-url.component';
-import {Router} from '@angular/router';
+import {FilterUserComponent} from '../user/filter-user/filter-user.component';
+import {UrlFilterComponent} from './url-filter/url-filter.component';
 
 @Component({
   selector: 'app-url',
@@ -62,12 +63,28 @@ export class UrlComponent implements OnInit {
   }
 
   addNewUrl() {
-    this.modalService.open(CreateUrlComponent, {size: 'lg', backdrop: 'static'});
+    const modalRef = this.modalService.open(CreateUrlComponent, {size: 'lg', backdrop: 'static'});
+    modalRef.result.then(res => {
+      if (res) {
+        this.loadPage(1);
+      }
+    });
   }
-
   showFilter() {
+    const modelRef = this.modalService.open(UrlFilterComponent, {size: 'lg', backdrop: 'static'});
+    modelRef.componentInstance.loginFilter = this.loginFilter;
+    modelRef.result.then(result => {
+      console.log(result);
+      if (result) {
+        this.loginFilter = result.loginFilter;
+        this.loadPage(1);
+      }
+    });
   }
 
   deleteFilters() {
+    this.loginFilter = null;
+    this.loadPage(1);
   }
+
 }
