@@ -5,6 +5,7 @@ import {User} from '../../shared/models/user.model';
 import {Observable} from 'rxjs';
 import {AuthToken} from '../../shared/models/auth-token.model';
 import {Role} from '../../shared/models/role.model';
+import {Router} from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -15,8 +16,10 @@ export class AuthService implements OnDestroy {
   authToken: string = null;
   currentUser: string = null;
   private principal: AuthToken = null;
+  route: Router;
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient,  route: Router) {
+    this.route = route;
   }
 
   ngOnDestroy(): void {
@@ -61,6 +64,7 @@ export class AuthService implements OnDestroy {
     sessionStorage.setItem('currentLogin', auth.username);
     sessionStorage.setItem('successToken', auth.jwtToken);
     sessionStorage.setItem('domain', auth.domain);
+    this.route.navigate(['/urlList']);
   }
 
   /**

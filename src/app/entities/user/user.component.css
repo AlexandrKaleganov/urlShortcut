@@ -1,0 +1,9 @@
+table {
+  table-layout: auto; /* Фиксированная ширина ячеек */
+  width: 100%!important; /* Ширина таблицы */
+}
+.table th, .table td {
+  padding: 4px;
+  align-content: center;
+  border-top: 1px solid #dee2e6;
+}
