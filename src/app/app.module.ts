@@ -8,11 +8,13 @@ import {AdminModule} from './admin/admin.module';
 import { HttpClientModule} from '@angular/common/http';
 import { AuthorityDirective } from './shared/directive/authority.directive';
 import {EntitiesModule} from './entities/entities.module';
+import { PreloadComponent } from './header/preload/preload.component';
 
 @NgModule({
     declarations: [
         AppComponent,
         HeaderComponent,
+        PreloadComponent,
     ],
     imports: [
         EntitiesModule,

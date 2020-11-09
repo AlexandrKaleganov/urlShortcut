@@ -1,6 +1,8 @@
 table {
-  table-layout: fixed; /* Фиксированная ширина ячеек */
-  width: 100%; /* Ширина таблицы */
+  table-layout: auto; /* Фиксированная ширина ячеек */
+  width: 100%!important; /* Ширина таблицы */
 }
-/*.col1 { width: 160px; }*/
-/*.col2 { width: 60px; }*/
+.table th, .table td {
+  padding: 4px;
+  align-content: center;
+}

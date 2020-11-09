@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import {AuthService} from './core/auth/auth.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +10,6 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'urlShortcut';
+  constructor(public authService: AuthService) {
+  }
 }

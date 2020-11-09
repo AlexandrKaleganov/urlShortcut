@@ -7,16 +7,16 @@
             <h3><span>Пользователи</span></h3>
           </div>
           <div class="btn-group float-left rounded">
-            <button class="btn float-right btn-primary shadow rounded"  style="border-right-color: white" (click)="showFilter()">
+            <button class="btn float-right btn-primary btn-sm shadow rounded"  style="border-right-color: white" (click)="showFilter()">
               Отобразить фильтр
             </button>
-            <button class="btn float-right btn-danger shadow"  style="border-left-color: white" (click)="deleteFilters()">
+            <button class="btn float-right btn-danger btn-sm shadow"  style="border-left-color: white" (click)="deleteFilters()">
               Очистить фильтры
             </button>
           </div>
           <div *appAuthority="['ADMIN']" class="btn-group float-right rounded">
             <button
-              class="btn btn-primary float-right jh-create-entity create-ticket"
+              class="btn btn-sm shadow btn-primary float-right jh-create-entity create-ticket"
               (click)="addNewUser()">
               <span>Добавить пользователя</span>
             </button>
@@ -53,7 +53,7 @@
               </td>
               <td  class="border border-top text-center">
                 <div class="btn-group">
-                <button *ngIf="isVisible(user)" class="btn btn-sm float-right btn-secondary shadow rounded"
+                <button *ngIf="isVisible(user)" class="btn btn-sm shadow float-right btn-secondary rounded"
                                                                             (click)="edit(user)">Редактировать</button>
                 </div>
               </td>
